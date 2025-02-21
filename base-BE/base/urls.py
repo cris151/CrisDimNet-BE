@@ -15,8 +15,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from . import views 
 from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Cliente API URLs
+    path('api/clientes/', views.showClienteView.as_view(), name='show_cliente'),
+    path('api/clientes/add/', views.addClienteView.as_view(), name='add_cliente'),
+    path('api/clientes/edit/<int:cliente_id>/', views.editClienteView.as_view(), name='edit_cliente'),
+    path('api/clientes/delete/<int:cliente_id>/', views.removeClienteView.as_view(), name='remove_cliente'),
+    path('api/clientes/check/', views.checkClienteView.as_view(), name='check_cliente'),
+
+    # Transaction API URLs
+    path('api/transactions/', views.showTransactionView.as_view(), name='show_transaction'),
+    path('api/transactions/add/', views.addTransactionView.as_view(), name='add_transaction'),
+    path('api/transactions/edit/<int:transaction_id>/', views.editTransactionView.as_view(), name='edit_transaction'),
+    path('api/transactions/delete/<int:transaction_id>/', views.removeTransactionView.as_view(), name='remove_transaction'),
+    path('api/transactions/check/', views.checkTransactionView.as_view(), name='check_transaction'),
+
 ]
